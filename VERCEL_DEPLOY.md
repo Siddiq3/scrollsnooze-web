@@ -72,3 +72,13 @@ through setup and sign-in; acceptance is always explicit. Validate this with a r
 testing-track install. Sideloading an APK does not reproduce Play install attribution.
 iOS new installs require reopening the invite link after installation. Do not advertise
 automatic iOS deferred linking. Until Play publication the download URL is not usable.
+
+## Current pre-Play signing certificate
+
+The owner-provided public SHA-256 is stored in
+`scripts/android-signing-certificates.json`. It is included in every website build; no
+Vercel environment variable is required for this certificate. Additional fingerprints
+from `ANDROID_SIGNING_SHA256` are appended without removing the configured certificate.
+This verifies only app builds signed by the matching key. After Play upload, add the
+Play **app signing key certificate** SHA-256, which may differ from the upload key.
+No private key or password is included.
