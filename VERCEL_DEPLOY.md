@@ -41,3 +41,34 @@ deletion remains available separately. No live user account was deleted in verif
 `node --test test/deletion-request.test.mjs` checks email validation and encoding.
 `npm run build` builds all page entries. Recheck policy disclosures whenever providers,
 retention, payments or app data flows change. No Vercel analytics is included.
+
+## War invitation links
+
+Shared links now use `https://scrollsnooze.vercel.app/join/<opaque-token>?utm_content=duel`.
+The token travels inside the link; recipients never need to type or copy a code.
+Vercel rewrites `/join/:code` to the AWS public join endpoint, preserving query parameters.
+The matching backend must be deployed first. A 404 JSON `Not Found` from API Gateway
+means the route is not deployed; an HTML expired-invitation page means the route exists.
+
+For installed Android apps, set Vercel Production **ANDROID_SIGNING_SHA256** to the public
+SHA-256 from Play Console → App integrity → App signing key certificate. Redeploy Vercel.
+Use comma-separated fingerprints to add a directly installed test-build certificate.
+The build creates `/.well-known/assetlinks.json` with the correct package. Never use SHA-1.
+Without a certificate it deliberately emits an empty list; direct opening is not verified.
+`APPLE_TEAM_ID` similarly generates the iOS association file. Neither value is a secret.
+No backend URL or key is exposed to a client-side deletion form.
+
+Rebuild the app after the join domain change. Verify the installed Android build using:
+
+```sh
+adb shell pm verify-app-links --re-verify com.siddiqkolimi.scrollsnooze
+adb shell pm get-app-links com.siddiqkolimi.scrollsnooze
+adb shell am start -W -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d 'https://scrollsnooze.vercel.app/join/REAL_TOKEN?utm_content=duel'
+```
+
+The token above is a placeholder: test with an invitation created by a signed-in test account.
+After a Google Play install from the landing page, Install Referrer carries the invitation
+through setup and sign-in; acceptance is always explicit. Validate this with a real Play
+testing-track install. Sideloading an APK does not reproduce Play install attribution.
+iOS new installs require reopening the invite link after installation. Do not advertise
+automatic iOS deferred linking. Until Play publication the download URL is not usable.

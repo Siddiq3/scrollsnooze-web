@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv } from "vite";
+import { appAssociations } from "./scripts/app-associations.mjs";
 import { fileURLToPath } from "node:url";
 const entry = (path) => fileURLToPath(new URL(path, import.meta.url));
 export default defineConfig(({ mode }) => {
@@ -21,6 +22,9 @@ export default defineConfig(({ mode }) => {
           .replace(/<meta\s+property="og:(url|image)"[\s\S]*?\/>/g, "");
     },
     generateBundle() {
+      const associations = appAssociations(env);
+      this.emitFile({ type: "asset", fileName: ".well-known/assetlinks.json", source: JSON.stringify(associations.android) });
+      this.emitFile({ type: "asset", fileName: ".well-known/apple-app-site-association", source: JSON.stringify(associations.apple) });
       const paths = ["/", "/privacy/", "/delete-account/", "/support/", "/terms/"];
       this.emitFile({ type: "asset", fileName: "robots.txt", source: `User-agent: *\nAllow: /\n${origin ? `Sitemap: ${origin}/sitemap.xml\n` : ""}` });
       if (origin) this.emitFile({ type: "asset", fileName: "sitemap.xml", source: `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(path => `<url><loc>${origin}${path}</loc></url>`).join("")}</urlset>` });

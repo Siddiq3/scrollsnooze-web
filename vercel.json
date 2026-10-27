@@ -3,14 +3,56 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "trailingSlash": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/legal/privacy-policy", "destination": "/privacy/", "permanent": true },
-    { "source": "/legal/terms-of-use", "destination": "/terms/", "permanent": true },
-    { "source": "/account-deletion", "destination": "/delete-account/", "permanent": true }
+    {
+      "source": "/legal/privacy-policy",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/legal/terms-of-use",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/account-deletion",
+      "destination": "/delete-account/",
+      "permanent": true
+    }
   ],
-  "headers": [{ "source": "/(.*)", "headers": [
-    { "key": "X-Content-Type-Options", "value": "nosniff" },
-    { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-  ] }]
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/:file",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/join/:code",
+      "destination": "https://pwi8tdewmb.execute-api.us-east-1.amazonaws.com/join/:code"
+    }
+  ]
 }
