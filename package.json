@@ -13,6 +13,9 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "daisyui": "^5.7.50",
+    "tailwindcss": "^4.3.3",
     "vite": "^7.0.0"
   },
   "engines": {

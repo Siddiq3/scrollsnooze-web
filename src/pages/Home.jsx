@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Mascot from "../components/Mascot";
 import HeroFeatureLoop from "../components/HeroFeatureLoop";
+import FeatureDeck from "../components/FeatureDeck";
 
 const scenes = [
   { mood: "fresh", title: "Notice your scrolling.", sub: "A little awareness goes a long way.", stat: "24", unit: "example videos" },
@@ -16,30 +17,29 @@ const states = [
   ["wrapped", "Reflecting", "A daily check-in"],
 ];
 
-function Reveal({ children, delay = 0, className = "" }) {
+// Content is visible from the first render, including slow connections and reduced motion.
+// The feature previews carry the motion; reading the page never depends on an observer.
+function SectionContent({ children, className = "" }) {
+  return <div className={`reveal ${className}`}>{children}</div>;
+}
+
+function useOnScreen() {
   const ref = useRef(null);
+  const [onScreen, setOnScreen] = useState(true);
   useEffect(() => {
-    const el = ref.current;
-    if (!("IntersectionObserver" in window)) return;
-    el.classList.add("await-reveal");
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        el.classList.add("is-visible");
-        observer.disconnect();
-      }
-    }, { rootMargin: "0px 0px -8% 0px" });
-    observer.observe(el);
+    if (!("IntersectionObserver" in window) || !ref.current) return;
+    const observer = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting));
+    observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-  return <div ref={ref} className={`reveal ${className}`} style={{ "--delay": `${delay}ms` }}>{children}</div>;
+  return [ref, onScreen];
 }
 
 function StoreLink() {
-  return <a className="store-button" href="/support/"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2v20l16-10z" /></svg>Coming soon to Google Play</a>;
+  return <a className="ui-btn store-button" href="/support/"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2v20l16-10z" /></svg>Coming soon to Google Play</a>;
 }
 
 export default function Home() {
-  const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [slide, setSlide] = useState(0);
   const [visible, setVisible] = useState(() => !document.hidden);
@@ -51,64 +51,60 @@ export default function Home() {
     document.addEventListener("visibilitychange", visibilityChanged);
     return () => { media.removeEventListener("change", motionChanged); document.removeEventListener("visibilitychange", visibilityChanged); };
   }, []);
-  const still = paused || reduced || !visible;
+  const still = reduced || !visible;
+  const [heroRef, heroVisible] = useOnScreen();
+  const [deckRef, deckVisible] = useOnScreen();
   useEffect(() => {
-    if (still) return;
-    const deck = setInterval(() => setSlide(value => (value + 1) % scenes.length), 4800);
+    if (still || !deckVisible) return;
+    const deck = setInterval(() => setSlide(value => (value + 1) % scenes.length), 3000);
     return () => clearInterval(deck);
-  }, [still]);
-  const scene = scenes[slide];
+  }, [still, deckVisible]);
   return <main id="main" className={`reference-landing ${still ? "motion-paused" : ""}`}>
     <div className="warm-glow" aria-hidden="true" />
     <section className="reference-hero">
       <div className="wrap hero-grid">
         <div>
-          <Reveal><p className="overline">Reels awareness for Android</p></Reveal>
-          <Reveal delay={60}><h1>See your <em>reel count.</em></h1></Reveal>
-          <Reveal delay={120}><p className="lede">Understand your Reels, Shorts and daily app time. ScrollSnooze helps you notice your habits and find a moment to pause.</p></Reveal>
-          <Reveal delay={180}><div className="store-row"><StoreLink /><p className="launch-proof">Android launch in preparation <span>·</span> Your little fresh start</p></div></Reveal>
+          <SectionContent><h1>See your <em>reel count.</em></h1></SectionContent>
+          <SectionContent><p className="lede">Understand your Reels, Shorts and daily app time. ScrollSnooze helps you notice your habits and find a moment to pause.</p></SectionContent>
+          <SectionContent><div className="store-row"><StoreLink /><p className="launch-proof">Android launch in preparation <span>·</span> Your little fresh start</p></div></SectionContent>
         </div>
-        <Reveal delay={120}>
-          <div className="reference-phone-stage">
+        <SectionContent>
+          <div className="reference-phone-stage" ref={heroRef}>
             <div className="mascot-peek"><Mascot eager alt="ScrollSnooze waving from above the phone" /><span className="speech-bubble">Hi! Let’s scroll a little less.</span></div>
             <div className="reference-phone" aria-label="Animated feature preview">
-              <HeroFeatureLoop still={still} />
+              <HeroFeatureLoop still={still || !heroVisible} />
             </div>
           </div>
-        </Reveal>
+        </SectionContent>
       </div>
     </section>
     <section id="meet-your-mood" className="reference-moods wrap">
-      <Reveal><h2>A little companion.<br />Every kind of day.</h2></Reveal>
-      <Reveal delay={60}><p className="section-intro">Fresh starts, sleepy scrolls and peaceful pauses. Our character brings a little feeling to your daily check-in.</p></Reveal>
-      <div className="reference-states">{states.map(([mood,title,caption], i) => <Reveal delay={i*60} key={mood}><div className="reference-state"><Mascot mood={mood} className="bob" alt={`ScrollSnooze feeling ${title.toLowerCase()}`} /><strong>{title}</strong><span>{caption}</span></div></Reveal>)}</div>
-      <Reveal delay={300}><div className="mood-spectrum" /><p className="smallprint">Character moods are illustrations, not a measure of brain health.</p></Reveal>
+      <SectionContent><h2>A little companion.<br />Every kind of day.</h2></SectionContent>
+      <SectionContent><p className="section-intro">Fresh starts, sleepy scrolls and peaceful pauses. Our character brings a little feeling to your daily check-in.</p></SectionContent>
+      <div className="reference-states">{states.map(([mood,title,caption], i) => <SectionContent key={mood}><div className="reference-state"><Mascot mood={mood} className="bob" alt={`ScrollSnooze feeling ${title.toLowerCase()}`} /><strong>{title}</strong><span>{caption}</span></div></SectionContent>)}</div>
+      <SectionContent><div className="mood-spectrum" /><p className="smallprint">Character moods are illustrations, not a measure of brain health.</p></SectionContent>
     </section>
     <section className="reference-battle" id="battle">
       <div className="wrap">
-        <Reveal><h2>Better habits. Together.</h2></Reveal>
-        <Reveal delay={60}><p className="section-intro">A friendly reason to put the phone down.<br />Compare daily activity and cheer each other on.</p></Reveal>
-        <Reveal delay={120}><div className="battle-ring"><div className="battle-player"><Mascot mood="fresh" className="bob" alt="Your cheerful ScrollSnooze companion" /><strong>36</strong><span>YOU</span></div><span className="battle-vs">VS</span><div className="battle-player opponent"><Mascot mood="tired" className="bob" alt="Your friend’s sleepy ScrollSnooze companion" /><strong>93</strong><span>FRIEND</span></div></div></Reveal>
-        <Reveal delay={180}><span className="battle-caption">Less scrolling. More high fives.</span><p className="battle-note">Illustrative scores · friend experiences are in development</p></Reveal>
+        <SectionContent><h2>Better habits. Together.</h2></SectionContent>
+        <SectionContent><p className="section-intro">A friendly reason to put the phone down.<br />Compare daily activity and cheer each other on.</p></SectionContent>
+        <SectionContent><div className="battle-ring"><div className="battle-player"><Mascot mood="fresh" className="bob" alt="Your cheerful ScrollSnooze companion" /><strong>36</strong><span>YOU</span></div><span className="battle-vs">VS</span><div className="battle-player opponent"><Mascot mood="tired" className="bob" alt="Your friend’s sleepy ScrollSnooze companion" /><strong>93</strong><span>FRIEND</span></div></div></SectionContent>
+        <SectionContent><span className="battle-caption">Less scrolling. More high fives.</span><p className="battle-note">Illustrative scores · friend experiences are in development</p></SectionContent>
       </div>
     </section>
     <section className="reference-features wrap" id="how-it-works">
-      <Reveal><h2>Notice. Pause. Reset.</h2></Reveal>
-      <Reveal delay={60}><p className="section-intro">Daily insights, goals and focus times.<br />A little help finding the end of your feed.</p></Reveal>
-      <Reveal delay={120}><div className="poster-deck">
-        <div className="poster-behind" aria-hidden="true" />
-        <div className="feature-poster" key={slide}>
-          <span className="poster-brand">SCROLLSNOOZE</span><h3>{scene.title}</h3><p>{scene.sub}</p><Mascot mood={scene.mood} alt={`ScrollSnooze ${scene.mood} feature illustration`} /><div className="poster-stat"><strong>{scene.stat}</strong><span>{scene.unit}</span></div><span className="poster-preview">Illustrative preview</span>
-        </div>
-      </div><div className="deck-controls" role="group" aria-label="Feature previews">{scenes.map((item,i)=><button key={item.mood} type="button" aria-label={`Show preview ${i+1}: ${item.title}`} aria-pressed={slide===i} onClick={()=>setSlide(i)} />)}</div></Reveal>
-      <p className="smallprint">Short-video detection is experimental on supported Instagram and YouTube versions and requires permission. Android app pauses depend on permissions and supported app behavior.</p>
+      <SectionContent><h2>Notice. Pause. Reset.</h2></SectionContent>
+      <SectionContent><p className="section-intro">Daily insights, goals and focus times.<br />A little help finding the end of your feed.</p></SectionContent>
+      <div ref={deckRef}>
+        <FeatureDeck scenes={scenes} active={slide} />
+      </div>
     </section>
-    <section className="reference-message wrap"><Reveal><Mascot mood="friends" className="bob" alt="Two ScrollSnooze friends high-fiving" /><p>Less time in the feed.<br /><em>More time for your people.</em></p><span>A little encouragement goes a long way.</span></Reveal></section>
+    <section className="reference-message wrap"><SectionContent><Mascot mood="friends" className="bob" alt="Two ScrollSnooze friends high-fiving" /><p>Less time in the feed.<br /><em>More time for your people.</em></p><span>A little encouragement goes a long way.</span></SectionContent></section>
     <section className="reference-choices wrap">
-      <Reveal><h2>Your pace. Your choice.</h2></Reveal>
-      <div className="reference-plans"><Reveal><article><span className="overline">Start small</span><h3>Make it yours.</h3><ul><li>Daily app-time insights</li><li>Your own goals and intentions</li><li>Guest mode, without an account</li></ul><a href="/support/">Getting started ↗</a></article></Reveal><Reveal delay={60}><article className="protected-plan"><Mascot mood="privacy" className="bob plan-pal" alt="ScrollSnooze protecting your privacy" /><span className="overline">Stay in control</span><h3>Your data. Your say.</h3><ul><li>Choose your permissions</li><li>Google sign-in for supported backup</li><li>Request account deletion anytime</li></ul><a href="/privacy/">Read the privacy policy ↗</a></article></Reveal></div>
+      <SectionContent><h2>Your pace. Your choice.</h2></SectionContent>
+      <div className="reference-plans"><SectionContent><article><h3>Make it yours.</h3><p className="plan-caption">Start small</p><ul><li>Daily app-time insights</li><li>Your own goals and intentions</li><li>Guest mode, without an account</li></ul><a href="/support/">Getting started ↗</a></article></SectionContent><SectionContent><article className="protected-plan"><Mascot mood="privacy" className="bob plan-pal" alt="ScrollSnooze protecting your privacy" /><h3>Your data. Your say.</h3><p className="plan-caption">Stay in control</p><ul><li>Choose your permissions</li><li>Google sign-in for supported backup</li><li>Request account deletion anytime</li></ul><a href="/privacy/">Read the privacy policy ↗</a></article></SectionContent></div>
     </section>
-    <section className="reference-faq wrap"><Reveal><div className="reference-faq-head"><Mascot mood="tired" alt="Our curious sleepy character" /><h2>Questions?</h2></div></Reveal><Reveal delay={60}><div className="faq">
+    <section className="reference-faq wrap"><SectionContent><div className="reference-faq-head"><Mascot mood="tired" alt="Our curious sleepy character" /><h2>Questions?</h2></div></SectionContent><SectionContent><div className="faq">
         <details>
           <summary>{"Can I use ScrollSnooze without an account?"}</summary>
           <p>
@@ -154,7 +150,7 @@ export default function Home() {
             {". You don’t need to reinstall the app to make a request."}
           </p>
         </details>
-    </div></Reveal></section>
-    <section className="reference-final" id="get-the-app"><div className="wrap"><Reveal><Mascot mood="focused" className="bob" alt="ScrollSnooze enjoying a peaceful pause" /></Reveal><Reveal delay={60}><h2>Scroll less. Live a little more.</h2></Reveal><Reveal delay={120}><StoreLink /></Reveal><p className="smallprint">ScrollSnooze is preparing for its Android debut.</p><button type="button" className="motion-control" onClick={()=>setPaused(value=>!value)} aria-pressed={paused}>{paused ? "Resume animations" : "Pause animations"}</button></div></section>
+    </div></SectionContent></section>
+    <section className="reference-final" id="get-the-app"><div className="wrap"><SectionContent><Mascot mood="focused" className="bob" alt="ScrollSnooze enjoying a peaceful pause" /></SectionContent><SectionContent><h2>Scroll less. Live a little more.</h2></SectionContent><SectionContent><StoreLink /></SectionContent></div></section>
   </main>;
 }

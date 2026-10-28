@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import { appAssociations } from "./scripts/app-associations.mjs";
 import { fileURLToPath } from "node:url";
+import tailwindcss from "@tailwindcss/vite";
 const entry = (path) => fileURLToPath(new URL(path, import.meta.url));
 export default defineConfig(({ mode }) => {
   const env = { ...loadEnv(mode, process.cwd(), ""), ...process.env };
@@ -14,7 +15,7 @@ export default defineConfig(({ mode }) => {
     origin = url.origin;
   }
   return {
-  plugins: [{
+  plugins: [tailwindcss(), {
     name: "production-website-urls",
     transformIndexHtml(html) {
       return origin ? html.replaceAll("__SITE_ORIGIN__", origin)

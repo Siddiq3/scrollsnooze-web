@@ -1,0 +1,42 @@
+/* Keep the existing document styles: load utilities without Tailwind's reset. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@plugin "daisyui" {
+  themes: false;
+  include: button;
+  prefix: "ui-";
+  logs: false;
+}
+@plugin "daisyui/theme" {
+  name: "scrollsnooze";
+  default: true;
+  color-scheme: dark;
+  --color-base-100: #0a0907;
+  --color-base-200: #14130f;
+  --color-base-300: #1c1a15;
+  --color-base-content: #fcfffa;
+  --color-primary: #ffe9b4;
+  --color-primary-content: #2b1600;
+  --color-secondary: #c4a0ff;
+  --color-secondary-content: #201033;
+  --color-accent: #ffb367;
+  --color-accent-content: #2b1600;
+  --color-neutral: #29251b;
+  --color-neutral-content: #fcfffa;
+  --color-info: #accfff;
+  --color-info-content: #102137;
+  --color-success: #79d056;
+  --color-success-content: #182912;
+  --color-warning: #ffd99a;
+  --color-warning-content: #2b1600;
+  --color-error: #fc7b80;
+  --color-error-content: #310b10;
+  --radius-selector: 1rem;
+  --radius-field: 2rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
