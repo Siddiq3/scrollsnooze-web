@@ -4,10 +4,12 @@ import HeroFeatureLoop from "../components/HeroFeatureLoop";
 import FeatureDeck from "../components/FeatureDeck";
 
 const scenes = [
-  { mood: "fresh", title: "Notice your scrolling.", sub: "A little awareness goes a long way.", stat: "24", unit: "example videos" },
-  { mood: "focused", title: "Make space to pause.", sub: "Your next scroll can wait.", stat: "30", unit: "minute example goal" },
-  { mood: "friends", title: "Bring a friend along.", sub: "Better habits. Better company.", stat: "VS", unit: "friend experiences in development" },
-  { mood: "wrapped", title: "Look back. Move forward.", sub: "Find the patterns in your day.", stat: "7", unit: "days, one little recap" },
+  { id: "scroll-habits", title: "Know your scroll habits", image: "/assets/features/scroll-habits.webp", alt: "Know your scroll habits — ScrollSnooze reel preview with the purple mascot" },
+  { id: "mindful-break", title: "Less feed. More free time.", image: "/assets/features/mindful-break.webp", alt: "Less feed. More free time. Pause, unwind and recharge with the purple mascot" },
+  { id: "choose-when-to-stop", title: "Choose when to stop", image: "/assets/features/choose-when-to-stop.webp", alt: "Choose when to stop — the purple mascot beside a daily limit reached message" },
+  { id: "all-your-feeds", title: "All your feeds. One place.", image: "/assets/features/all-your-feeds.webp", alt: "All your feeds. One place. Purple mascot with Instagram, YouTube Shorts, Facebook and Snapchat icons" },
+  { id: "weekly-progress", title: "Check weekly progress", image: "/assets/features/weekly-progress.webp", alt: "Check weekly progress — a seven-day activity chart with the purple mascot" },
+  { id: "weekly-insights", title: "A fresh look at your week", image: "/assets/features/weekly-insights.webp", alt: "A fresh look at your week — activity, patterns and progress with the purple mascot" },
 ];
 const states = [
   ["fresh", "Fresh", "A new start"],

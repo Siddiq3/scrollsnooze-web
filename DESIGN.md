@@ -14,7 +14,7 @@ product copy, pre-launch status, privacy disclosures and local font files.
 - The phone stays at most 300 px wide and scales down to 78vw on small phones.
 - Five character moods stay together; plan cards stack below 720 px.
 - The cream friends section spans the full viewport with scalloped edges.
-- The feature deck is at most 560 px wide. Posters advance one by one every three seconds, with real neighboring posters behind the centered card and no arrows or pagination dots.
+- The feature deck is at most 560 px wide. Six owner-supplied image posters advance one by one every three seconds, with real neighboring posters behind the centered card and no arrows or pagination dots.
 
 DaisyUI is limited to prefixed `ui-btn` components, avoiding collisions with
 existing legal-page classes. `src/theme.css` declares the shared color roles;
@@ -38,3 +38,11 @@ loaded images, heading visibility, FAQ expansion, automatic poster playback and 
 navigation. Check privacy, deletion, support, terms and the not-found page.
 Build with `npm run build`; run `node --test test/*.test.mjs` for existing
 account-deletion and app-association behavior.
+
+## Feature artwork
+
+The feature carousel uses the six supplied full poster images in
+`public/assets/features/`, with no overlaid headings or generated card artwork.
+The complete image fits each card without cropping. Originals are unchanged;
+750px-wide WebP copies keep the page lightweight. Source filenames are recorded
+in `public/assets/features/SOURCES.md`.
