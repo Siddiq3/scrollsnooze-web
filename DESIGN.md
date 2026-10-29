@@ -31,10 +31,17 @@ Tailwind preflight is omitted to preserve the established document formatting.
 
 ## Motion and accessibility
 
-Text and sections are visible on first render. The hero and feature preview
-provide motion without hiding content behind reveal observers. Both stop when
-offscreen or when the document is hidden.
-Reduced motion disables automatic scene changes and character movement.
+Content remains visible by default; IntersectionObserver and the Web Animations API
+add one-time arrivals as visitors scroll. Headlines settle in over 700 ms, the five
+moods arrive in a short 70 ms stagger, and the friends converge from opposite sides.
+The friends use dedicated inward-facing boxing poses with mint and blue gloves,
+with small alternating sparring movements that stop offscreen or with reduced motion.
+The poster deck settles as a unit, preserving the existing automatic carousel.
+Desktop browsers with scroll timelines gently tilt the phone as it leaves the view;
+other browsers keep it still. Scrolling remains native, with no scroll hijacking.
+The opening CTA has no separate motion toggle. Reduced motion skips spatial
+animation and automatic playback. Offscreen and hidden-document loops stop.
+No animation dependency is required; cancelling an animation restores visible content.
 
 Keep full alt text, native FAQ details/summary behavior, visible keyboard focus,
 responsive text wrapping and the skip link. Do not copy reference testimonials,
