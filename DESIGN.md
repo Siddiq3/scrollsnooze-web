@@ -1,19 +1,28 @@
 # ScrollSnooze website
 
-The landing page follows the responsive composition of https://brainpalapp.ai/,
-measured on 28 October 2026. ScrollSnooze retains its purple character assets,
-product copy, pre-launch status, privacy disclosures and local font files.
+ScrollSnooze uses a midnight blue, mint and lilac palette to give the website
+its own identity alongside the purple character assets. The responsive composition,
+product copy, pre-launch status, privacy disclosures and local font files are retained.
 
 ## Visual system
 
-- Warm near-black canvas, cream controls and apricot accents.
+- Midnight blue canvas (`#111c30`), elevated blue surfaces (`#19263d`, `#22324c`),
+  mint actions (`#adf0d4`) and lilac emphasis (`#d6c5ff`).
+- Cool white text (`#f4f6ff`), blue secondary text (`#b8c6dc`, `#a8b9d2`)
+  and visible blue dividers. Navigation and download buttons use a solid lilac fill,
+  dark purple text, a lighter lilac hover state and soft shadows.
+- Broad violet-to-indigo gradients blend into the midnight canvas behind the hero
+  and meditation character. A quieter plum wash gives the feature section depth;
+  the friends section fades from pale lilac to lavender. Ambient colors are
+  `#493063`, `#25274a` and `#342644`, complementing the purple mascot and lilac buttons.
+  Supplied poster artwork and recorded app footage retain their original colors.
 - Cabinet for headings and body; Lilita for the ScrollSnooze wordmark.
 - An 1120 px content container, with 20 px gutters below 720 px and 32 px above.
 - Heading scale: `clamp(44px, 9vw, 80px)`; section titles: `clamp(30px, 5vw, 48px)`.
 - At 900 px the hero changes from a vertical stack to text and phone columns.
 - The phone stays at most 300 px wide and scales down to 78vw on small phones.
 - Five character moods stay together; plan cards stack below 720 px.
-- The cream friends section spans the full viewport with scalloped edges.
+- The lilac friends section spans the full viewport with scalloped edges.
 - The feature deck is at most 560 px wide. Six owner-supplied image posters advance one by one every three seconds, with real neighboring posters behind the centered card and no arrows or pagination dots.
 
 DaisyUI is limited to prefixed `ui-btn` components, avoiding collisions with

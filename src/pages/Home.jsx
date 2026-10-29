@@ -153,6 +153,6 @@ export default function Home() {
           </p>
         </details>
     </div></SectionContent></section>
-    <section className="reference-final" id="get-the-app"><div className="wrap"><SectionContent><Mascot mood="focused" className="bob" alt="ScrollSnooze enjoying a peaceful pause" /></SectionContent><SectionContent><h2>Scroll less. Live a little more.</h2></SectionContent><SectionContent><StoreLink /></SectionContent></div></section>
+    <section className="reference-final" id="get-the-app"><div className="wrap"><SectionContent><img className="mascot bob" src="/assets/meditating.png" alt="ScrollSnooze meditating peacefully with legs crossed and hands resting on its knees" width="1328" height="1200" loading="lazy" /></SectionContent><SectionContent><h2>Scroll less. Live a little more.</h2></SectionContent><SectionContent><StoreLink /></SectionContent></div></section>
   </main>;
 }
