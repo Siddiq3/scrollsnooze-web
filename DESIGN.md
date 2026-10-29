@@ -35,7 +35,11 @@ Content remains visible by default; IntersectionObserver and the Web Animations 
 add one-time arrivals as visitors scroll. Headlines settle in over 700 ms, the five
 moods arrive in a short 70 ms stagger, and the friends converge from opposite sides.
 The friends use dedicated inward-facing boxing poses with mint and blue gloves,
-with small alternating sparring movements that stop offscreen or with reduced motion.
+with separate shoulder-pivoted leading and guarding arm layers. Alternating jabs
+extend and retract the lead glove while the other glove keeps guard; both stop
+offscreen or with reduced motion. Each visible leading-glove extension increments
+that character’s sample count once, using the CSS animation phase, with a small
+pulse on the number. Counts stop offscreen and with reduced motion.
 The poster deck settles as a unit, preserving the existing automatic carousel.
 Desktop browsers with scroll timelines gently tilt the phone as it leaves the view;
 other browsers keep it still. Scrolling remains native, with no scroll hijacking.

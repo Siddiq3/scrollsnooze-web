@@ -32,3 +32,27 @@ Full-body three-quarter pose facing left, light-blue boxing gloves, leading glov
 forward and other glove guarding the chin, feet apart, knees bent and playful
 focused grin. Preserve purple coloring and proportions, transparent background,
 complete gloves and feet, no text, numbers, ring or scene.
+
+
+## Independently animated boxing arms
+
+Generated with the built-in image generation tool on 30 October 2026 using the
+existing mint- and blue-glove boxers as references. Transparent three-cell atlases
+were split into aligned 800×800 WebP layers. The same body is mirrored for the
+opponent so both retain a consistent silhouette; glove colors remain distinct.
+
+Saved layers:
+- `public/assets/boxing-you-body.webp`
+- `public/assets/boxing-you-lead.webp`
+- `public/assets/boxing-you-guard.webp`
+- `public/assets/boxing-friend-lead.webp`
+- `public/assets/boxing-friend-guard.webp`
+
+Prompt set (one atlas per boxer): Preserve the supplied boxer’s mascot identity,
+pose, color and soft 3D rendering. Produce a transparent three-cell horizontal
+layer atlas with equal square cells. Cell 1 contains only the head, torso and
+legs with both arms removed and the body restored cleanly. Cell 2 contains only
+the leading arm and glove; cell 3 contains only the guarding arm and glove.
+Keep matching full-character coordinates across cells so overlaying them
+reconstructs the boxer. Mint-glove boxer faces right; blue-glove boxer faces
+left. No text, labels, separators, numbers, scenery or opaque background.

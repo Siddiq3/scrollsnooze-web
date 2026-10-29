@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useScrollMotion from "../hooks/useScrollMotion";
 import Mascot from "../components/Mascot";
+import BoxingPlayer from "../components/BoxingPlayer";
 import HeroFeatureLoop from "../components/HeroFeatureLoop";
 import FeatureDeck from "../components/FeatureDeck";
 
@@ -92,7 +93,7 @@ export default function Home() {
       <div className="wrap">
         <SectionContent><h2>Better habits. Together.</h2></SectionContent>
         <SectionContent><p className="section-intro">A friendly reason to put the phone down.<br />Compare daily activity and cheer each other on.</p></SectionContent>
-        <SectionContent motion="friends"><div className="battle-ring"><div className="battle-player"><Mascot mood="boxing-you" className="bob" alt="Your ScrollSnooze character facing right with mint boxing gloves" /><strong>36</strong><span>YOU</span></div><span className="battle-vs">VS</span><div className="battle-player opponent"><Mascot mood="boxing-friend" className="bob" alt="Your friend’s ScrollSnooze character facing left with blue boxing gloves" /><strong>93</strong><span>FRIEND</span></div></div></SectionContent>
+        <SectionContent motion="friends"><div className="battle-ring"><BoxingPlayer initialCount={36} /><span className="battle-vs">VS</span><BoxingPlayer opponent initialCount={93} /></div></SectionContent>
         <SectionContent><span className="battle-caption">Less scrolling. More high fives.</span></SectionContent>
       </div>
     </section>

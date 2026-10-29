@@ -268,8 +268,22 @@ input,textarea{caret-color:var(--action)}
 @keyframes hero-pal-droop{from{transform:translateY(0) rotate(-1deg)}to{transform:translateY(5px) rotate(1deg)}}
 @media(prefers-reduced-motion:reduce){.feature-loop *{animation:none!important;transition:none!important}}
 
-/* Friendly sparring: each character faces inward and keeps its guard up. */
-.battle-player:first-child img{animation:battle-jab 1.8s ease-in-out infinite;transform-origin:center 85%}
-.battle-player.opponent img{animation:battle-guard 1.8s ease-in-out -.9s infinite;transform-origin:center 85%}
-@keyframes battle-jab{0%,60%,100%{transform:translateX(0) rotate(-1deg)}24%{transform:translateX(7px) rotate(2deg)}38%{transform:translateX(0) rotate(-1deg)}44%{transform:translateX(4px) rotate(1deg)}}
-@keyframes battle-guard{0%,60%,100%{transform:translateX(0) rotate(1deg)}24%{transform:translateX(-6px) rotate(-2deg)}38%{transform:translateX(0) rotate(1deg)}44%{transform:translateX(-3px) rotate(-1deg)}}
+/* Layered arms jab from the shoulder; the opposite glove stays in guard. */
+.boxing-sprite.bob{position:relative;display:block;width:min(200px,34vw);aspect-ratio:1;margin:auto;animation:boxing-footwork 1.6s ease-in-out infinite}
+.boxing-sprite .boxing-body,.boxing-sprite .boxing-arm{position:absolute;inset:0}
+.battle-player .boxing-sprite img{display:block;width:100%;height:100%;margin:0;animation:none;filter:none;pointer-events:none}
+.boxing-friend .boxing-body{transform:scaleX(-1)}
+.boxing-you .boxing-lead{left:6%;top:5%;right:-6%;bottom:-5%;transform-origin:44% 58%;--punch-turn:-8deg;--punch-recoil:3deg}
+.boxing-you .boxing-guard{left:22%;top:-3%;right:-22%;bottom:3%;transform-origin:18% 70%;--guard-turn:9deg}
+.boxing-friend .boxing-lead{left:-6%;top:5%;right:6%;bottom:-5%;transform-origin:48% 64%;--punch-turn:8deg;--punch-recoil:-3deg}
+.boxing-friend .boxing-guard{left:-11%;top:-4%;right:11%;bottom:4%;transform-origin:67% 72%;--guard-turn:-9deg}
+.boxing-arm.boxing-lead{animation:boxing-punch 1.6s cubic-bezier(.2,.7,.2,1) infinite}
+.boxing-arm.boxing-guard{animation:boxing-cover 1.6s ease-in-out infinite}
+.boxing-friend.bob,.boxing-friend .boxing-arm{animation-delay:-.8s}
+.reference-landing[data-motion-ready] section[data-in-view="false"] .boxing-sprite *{animation-play-state:paused!important}
+@keyframes boxing-punch{0%,8%,40%,100%{transform:rotate(0) scaleX(1)}18%{transform:rotate(var(--punch-recoil)) scaleX(.95)}25%{transform:rotate(var(--punch-turn)) scaleX(1.24)}32%{transform:rotate(0) scaleX(1)}}
+@keyframes boxing-cover{0%,40%,100%{transform:rotate(0)}22%{transform:rotate(var(--guard-turn))}30%{transform:rotate(0)}55%{transform:rotate(var(--guard-turn))}70%{transform:rotate(0)}}
+@keyframes boxing-footwork{0%,40%,100%{transform:translateY(0)}24%{transform:translateY(-2px)}65%{transform:translateY(-1px)}}
+
+.battle-player .battle-score{font-variant-numeric:tabular-nums;animation:boxing-score-pop .24s cubic-bezier(.16,1,.3,1)}
+@keyframes boxing-score-pop{0%{transform:scale(.94)}45%{transform:scale(1.1)}100%{transform:scale(1)}}
