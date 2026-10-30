@@ -9,7 +9,6 @@ const scenes = [
   { id: "scroll-habits", title: "Know your scroll habits", image: "/assets/features/scroll-habits.webp", alt: "Know your scroll habits — ScrollSnooze reel preview with the purple mascot" },
   { id: "mindful-break", title: "Less feed. More free time.", image: "/assets/features/mindful-break.webp", alt: "Less feed. More free time. Pause, unwind and recharge with the purple mascot" },
   { id: "choose-when-to-stop", title: "Choose when to stop", image: "/assets/features/choose-when-to-stop.webp", alt: "Choose when to stop — the purple mascot beside a daily limit reached message" },
-  { id: "all-your-feeds", title: "All your feeds. One place.", image: "/assets/features/all-your-feeds.webp", alt: "All your feeds. One place. Purple mascot with Instagram, YouTube Shorts, Facebook and Snapchat icons" },
   { id: "weekly-progress", title: "Check weekly progress", image: "/assets/features/weekly-progress.webp", alt: "Check weekly progress — a seven-day activity chart with the purple mascot" },
   { id: "weekly-insights", title: "A fresh look at your week", image: "/assets/features/weekly-insights.webp", alt: "A fresh look at your week — activity, patterns and progress with the purple mascot" },
 ];
@@ -145,7 +144,7 @@ export default function Home() {
         <details>
           <summary>{"How do I delete my account?"}</summary>
           <p>
-            {"Use Privacy & data in the app, or "}
+            {"Use Profile > Account settings > Your data & account in the app, or "}
             <a
               href="/delete-account/"
               style={{ color: "#ddc7ff", textDecoration: "underline" }}

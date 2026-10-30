@@ -7,13 +7,15 @@ export default function Privacy() {
           {"Your privacy"}
         </div>
         <h1>{"Privacy Policy"}</h1>
-        <p>{"ScrollSnooze privacy policy · Last updated October 27, 2026"}</p>
+        <p>{"ScrollSnooze privacy policy · Last updated October 30, 2026"}</p>
       </header>
       <div className="legal-grid">
         <aside className="toc" aria-label="On this page">
           <strong>{"On this page"}</strong>
           <a href="#overview">{"The short version"}</a>
           <a href="#device">{"What stays on your device"}</a>
+          <a href="#accessibility-limits">{"What Accessibility does not do"}</a>
+          <a href="#permissions">{"Other permissions"}</a>
           <a href="#account">{"Google sign-in & account backup"}</a>
           <a href="#sharing">{"Friends, challenges & notifications"}</a>
           <a href="#providers">{"Service providers & website data"}</a>
@@ -48,17 +50,90 @@ export default function Privacy() {
             <h2>{"What stays on your device"}</h2>
             <p>
               {
-                "If you allow Accessibility access, ScrollSnooze processes interface structures in supported apps to identify short-video surfaces, count activity and apply configured pauses. Interface text used for duplicate detection is converted to short-lived salted fingerprints. Raw viewed-video titles, messages and screenshots are not part of ordinary account backup."
+                "If you allow Android AccessibilityService access, ScrollSnooze processes, only in Instagram and YouTube, app and foreground-window activity, window-change and scroll events, visible interface text and content descriptions, resource IDs, view classes, visibility and interface structure. These identify players and ads, detect item changes, count the Instagram Reels and YouTube Shorts you watch, measure time spent on them, show your count, goal alerts and meme breaks, and apply configured pauses, including when ScrollSnooze is closed. Relevant text is processed temporarily and converted into salted identifiers, held in memory only, for duplicate detection. Meme breaks use your phone’s language setting. Raw text and captions are not saved or uploaded, including any messages or passwords shown on screen. The accessibility service does not take screenshots. Language-specific meme reaction and selection history, including reaction IDs and caption indices, may be stored locally to manage which reactions are shown. This history is not included in normal account backup. Video detection is experimental."
               }
             </p>
             <p>
               {
-                "Usage Access, when allowed, supplies foreground minutes in supported apps. Your phone also stores goals, setup answers, preferences, daily activity and measurement-quality records. Setup answers are not uploaded by the current backup flow. Raw recorder events and fingerprints stay on the device unless you explicitly export and share diagnostic information."
+                "Separate Usage Access, when allowed, supplies foreground minutes in supported apps. Your phone stores counts, ad counts, viewing time and dates per app, timestamped viewing events for hourly activity and your daily recap, whether a day's count is experimental, goals, setup answers and preferences. Setup answers and viewing-event records are not included in account backup. Developer debug builds can export local diagnostic event records and capture interface structure without raw text or descriptions for accuracy testing; sharing requires an explicit action."
               }
             </p>
             <p>
               {
-                "Counting depends on supported app versions and permissions. Experimental or missing measurements are not a promise of complete or accurate tracking."
+                "You can decline the in-app disclosure without enabling accessibility tracking, or revoke access at any time in Android Accessibility settings. Signed-in users can read the full explanation again in the app under Profile > Account settings > Your data & account. App-minute tracking can work through separate Usage Access. Counting depends on supported app versions and permissions. Experimental or missing measurements are not a promise of complete or accurate tracking."
+              }
+            </p>
+          </section>
+          <section id="accessibility-limits">
+            <h2>{"What Accessibility does not do"}</h2>
+            <ul>
+              <li>
+                {
+                  "Android delivers Accessibility events to ScrollSnooze only from Instagram (com.instagram.android) and YouTube (com.google.android.youtube). This list is built into the app and can only change through an app update on Google Play."
+                }
+              </li>
+              <li>
+                {
+                  "Outside those two apps, ScrollSnooze only checks which app is in front (its package name), so it knows you have left Instagram or YouTube. It does not read the screen of other apps, including chat, banking, UPI and payment apps."
+                }
+              </li>
+              <li>
+                {"It does not take screenshots or record your screen."}
+              </li>
+              <li>
+                {
+                  "It does not save or upload the text you see or type, including messages, passwords and one-time codes. Text in Instagram and YouTube is processed in memory only, to recognise Reels and Shorts."
+                }
+              </li>
+              <li>
+                {
+                  "Saved viewing records contain only random record IDs, the app, whether the item was an ad, the time and date, your time zone and version numbers. They do not contain video titles, captions, creators, links or screen content."
+                }
+              </li>
+              <li>
+                {
+                  "It cannot tap, swipe or type for you. Its only action is Android Back, and only when you tap Leave feed on a pause screen."
+                }
+              </li>
+            </ul>
+          </section>
+          <section id="permissions">
+            <h2>{"Other permissions"}</h2>
+            <ul>
+              <li>
+                <strong>{"Usage Access (optional): "}</strong>
+                {
+                  "reads Android’s usage statistics to measure your minutes in Instagram and YouTube. You can turn it off in Android Settings > Usage access."
+                }
+              </li>
+              <li>
+                <strong>{"Notifications (optional): "}</strong>
+                {
+                  "shows goal alerts at 80% and 100% of a daily goal and, if you turn it on, an evening check-in at 9 pm. These notifications are created on your phone."
+                }
+              </li>
+              <li>
+                <strong>{"Internet and network state: "}</strong>
+                {"used for sign-in, account backup, friends and challenges."}
+              </li>
+              <li>
+                <strong>{"Run at startup: "}</strong>
+                {"lets scheduled reminders continue after your phone restarts."}
+              </li>
+              <li>
+                <strong>{"Vibration and app icon badge: "}</strong>
+                {"used for haptic feedback and notification badges."}
+              </li>
+              <li>
+                <strong>{"Google Play install referrer: "}</strong>
+                {
+                  "read once on your phone after installing, only to open a friend’s challenge invite you followed."
+                }
+              </li>
+            </ul>
+            <p>
+              {
+                "ScrollSnooze does not request Display over other apps, battery optimisation exemptions, in-app purchases, biometrics, location, camera, microphone, contacts, photos or files."
               }
             </p>
           </section>
@@ -71,7 +146,7 @@ export default function Privacy() {
             </p>
             <p>
               {
-                "As explained during sign-in, signing in enables automatic backup. The backend stores your account profile and timezone, saved goals, supported daily usage totals, measurement-quality fields and random device identifiers. Private video totals can include experimental measurements; they do not establish competitive-score eligibility. Where applicable, account-wide limit and device-allocation records support usage protection."
+                "As explained during sign-in, signing in enables automatic backup. The backend stores your account profile and timezone, saved goals, supported daily usage totals and random device identifiers that keep each phone's totals separate. Raw accessibility text, captions, UI trees and viewing-event records are not included in account backup. Private video totals can include experimental measurements; they do not establish competitive-score eligibility. Where applicable, account-wide limit and device-allocation records support usage protection."
               }
             </p>
             <p>
@@ -97,7 +172,7 @@ export default function Privacy() {
             <h2>{"Service providers & website data"}</h2>
             <p>
               {
-                "Account services are hosted on Amazon Web Services. Google provides authentication and Google Play distribution; Google services may deliver configured Android push notifications. This website is hosted by Vercel and its hosting infrastructure. These providers may process technical information outside your country."
+                "We use these service providers: Amazon Web Services hosts account services (sign-in verification, backup, friends and challenges). Google provides Google Sign-In, Google Play distribution and the Play install referrer. The Firebase Cloud Messaging library is included with Android notifications, but ScrollSnooze does not currently send remote push notifications. Vercel hosts this website. ScrollSnooze does not use advertising, analytics or crash-reporting SDKs. These providers may process technical information outside your country."
               }
             </p>
             <p>
@@ -120,7 +195,7 @@ export default function Privacy() {
             </p>
             <p>
               {
-                "Application operational logs are configured for 30-day retention. Deleted records may remain in protected database recovery backups until those recovery copies expire; the configured point-in-time recovery system can retain earlier states for up to 35 days. Backups are not used to serve normal app requests. Support correspondence is retained only as needed to resolve your request or meet necessary legal or security obligations."
+                "Local viewing events older than 30 days are purged when the accessibility service connects. Local daily aggregates remain until reset or deletion. Debug exports remain in app cache until removed or the cache is cleared. Application operational logs are configured for 30-day retention and include request route, response status, duration and request ID; unhandled application errors record the error type. These support service operation and troubleshooting. Deleted records may remain in protected database recovery backups until those recovery copies expire; the configured point-in-time recovery system can retain earlier states for up to 35 days. Backups are not used to serve normal app requests. Support correspondence is retained only as needed to resolve your request or meet necessary legal or security obligations."
               }
             </p>
             <p>
@@ -133,7 +208,7 @@ export default function Privacy() {
             <h2>{"Your choices & deletion"}</h2>
             <p>
               {
-                "You can turn Accessibility and Usage Access off in Android settings. In the app, Privacy & data provides export, local-reset and account-deletion controls. Cloud account deletion and clearing a phone’s local data are separate actions."
+                "You can turn Accessibility and Usage Access off in Android settings. In the app, go to Profile > Account settings > Your data & account to export your data, reset this phone or delete your account and data. Cloud account deletion and clearing a phone’s local data are separate actions."
               }
             </p>
             <p>

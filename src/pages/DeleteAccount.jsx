@@ -85,7 +85,7 @@ export default function DeleteAccount() {
               {
                 "Cloud deletion does not erase files already stored on your device. Use "
               }
-              <strong>{"Privacy & data → Reset local history"}</strong>
+              <strong>{"Profile → Account settings → Your data & account → Reset local history"}</strong>
               {
                 " in the app, or uninstall it to remove the app’s private device storage. Uninstalling alone does not request cloud account deletion."
               }
@@ -93,7 +93,7 @@ export default function DeleteAccount() {
             <h2>{"Prefer doing it in the app?"}</h2>
             <p>
               {"Sign in to the account you want to delete, open "}
-              <strong>{"Privacy & data → Delete my account"}</strong>
+              <strong>{"Profile → Account settings → Your data & account → Delete my account"}</strong>
               {
                 ", and confirm. A recent Google sign-in may be required. If deletion was interrupted, follow the app’s recovery option."
               }
