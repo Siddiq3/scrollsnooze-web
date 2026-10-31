@@ -40,7 +40,7 @@ export default function Terms() {
             <h2>{"Accounts & responsible use"}</h2>
             <p>
               {
-                "You are responsible for the account you use to sign in. Do not impersonate someone, attempt to access another person’s data, or use the service for unauthorized monitoring. Friend and battle sharing should be voluntary. Do not attempt to bypass access controls or disrupt the service."
+                "You are responsible for the account you use to sign in. Do not impersonate someone, attempt to access another person’s data, or use the service for unauthorized monitoring. Friend sharing should be voluntary. Do not attempt to bypass access controls or disrupt the service."
               }
             </p>
           </section>

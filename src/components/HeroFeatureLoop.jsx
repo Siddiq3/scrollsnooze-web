@@ -56,7 +56,7 @@ function CompareScene({ time }) {
       <div className="chat-message" style={{ opacity: time >= 150 ? 1 : 0, transform: `translateY(${time >= 150 ? 0 : 18}px)` }}><span>Alex</span><div className="chat-badge"><Mascot eager mood="drained" alt="" /><b>{EXAMPLE_TOTAL}</b></div><p>my scrolling check-in today</p></div>
       <div className="chat-message chat-green" style={{ opacity: time >= 700 ? 1 : 0, transform: `translateY(${time >= 700 ? 0 : 18}px)` }}><span>Maya</span><p>Time for a break?</p></div>
       <div className="chat-message chat-mine" style={{ opacity: time >= 1250 ? 1 : 0, transform: `translateY(${time >= 1250 ? 0 : 18}px)` }}><p>let’s scroll less together 👊</p></div>
-      <div className="chat-message" style={{ opacity: time >= 1900 ? 1 : 0, transform: `translateY(${time >= 1900 ? 0 : 18}px)` }}><span>Sam</span><p>Challenge accepted.</p></div>
+      <div className="chat-message" style={{ opacity: time >= 1900 ? 1 : 0, transform: `translateY(${time >= 1900 ? 0 : 18}px)` }}><span>Sam</span><p>I’m in.</p></div>
     </div>
     <span className="hero-scene-note">Illustrative conversation</span>
   </>;
@@ -66,13 +66,11 @@ function BattleScene({ time }) {
   const progress = easeOut((time - 200) / 1000);
   return <>
     <h3>Scroll less<br /><em>with friends.</em></h3>
-    <div className="hero-battle-board">
-      <svg className="battle-lightning" viewBox="0 0 240 270" aria-hidden="true"><path d="M204 5 89 119 119 133 15 258" /></svg>
-      <div className={`hero-fighter hero-you ${time > 1800 ? "hero-winner" : ""}`}><Mascot eager alt="Your cheerful character" /><strong>{Math.round(BATTLE_COUNTS.you * progress)}</strong><span>YOU</span></div>
-      <div className="hero-fighter hero-friend"><Mascot eager mood="drained" alt="Your friend’s sleepy character" /><strong>{Math.round(BATTLE_COUNTS.friend * progress)}</strong><span>FRIEND</span></div>
-      <span className="hero-win-label" style={{ opacity: time > 1900 ? 1 : 0 }}>Less scrolling wins</span>
+    <div className="friends-board hero-friends-board">
+      <div className="friends-row"><b>1</b><Mascot eager alt="" /><span>You</span><strong>{Math.round(BATTLE_COUNTS.you * progress)}</strong></div>
+      <div className="friends-row"><b>2</b><Mascot eager mood="drained" alt="" /><span>Friend</span><strong>{Math.round(BATTLE_COUNTS.friend * progress)}</strong></div>
     </div>
-    <span className="hero-scene-note">Friend experiences in development</span>
+    <span className="hero-scene-note">Example Friends Leaderboard</span>
   </>;
 }
 
@@ -105,7 +103,7 @@ export default function HeroFeatureLoop({ still }) {
   const start = scene === "reels" ? 0 : scene === "moods" ? HERO_LOOP.moods : scene === "compare" ? HERO_LOOP.compare : HERO_LOOP.battle;
   const end = scene === "reels" ? HERO_LOOP.moods : scene === "moods" ? HERO_LOOP.compare : scene === "compare" ? HERO_LOOP.battle : HERO_LOOP.duration;
   const opacity = still ? 1 : Math.min(1, scene === "reels" ? 1 : (time - start) / 200, (end - time) / 100);
-  return <div className="demo-screen feature-loop" data-still={still} aria-label="11.5 second preview: reel counter, character moods, friend comparison and battle">
+  return <div className="demo-screen feature-loop" data-still={still} aria-label="11.5 second preview: reel counter, character moods, friend comparison and leaderboard">
     <div key={scene} className={`hero-loop-scene hero-loop-${scene}`} style={{ opacity }}>
       {scene === "reels" && <Reels still={still} time={time} video={video} />}
       {scene === "moods" && <MoodScene time={time - HERO_LOOP.moods} />}

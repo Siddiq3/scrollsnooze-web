@@ -69,7 +69,7 @@ export default function DeleteAccount() {
             <h2>{"What is deleted"}</h2>
             <p>
               {
-                "The deletion process removes the ScrollSnooze account profile, backed-up usage history, saved cloud goals, device registrations, friend relationships and challenge participation associated with the account."
+                "The deletion process removes the ScrollSnooze account profile, backed-up usage history, saved cloud goals, device registrations, friend relationships and Friends Leaderboard connections associated with the account."
               }
             </p>
             <h2>{"What may remain"}</h2>

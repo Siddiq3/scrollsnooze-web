@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useScrollMotion from "../hooks/useScrollMotion";
 import Mascot from "../components/Mascot";
-import BoxingPlayer from "../components/BoxingPlayer";
 import HeroFeatureLoop from "../components/HeroFeatureLoop";
 import FeatureDeck from "../components/FeatureDeck";
 
@@ -88,11 +87,14 @@ export default function Home() {
       <div className="reference-states">{states.map(([mood,title,caption], i) => <SectionContent key={mood} motion="mood" delay={i * 70}><div className="reference-state"><Mascot mood={mood} className="bob" alt={`ScrollSnooze feeling ${title.toLowerCase()}`} /><strong>{title}</strong><span>{caption}</span></div></SectionContent>)}</div>
       <SectionContent motion="none"><div className="mood-spectrum" data-motion="spectrum" /></SectionContent>
     </section>
-    <section className="reference-battle" id="battle">
+    <section className="reference-battle" id="friends">
       <div className="wrap">
         <SectionContent><h2>Better habits. Together.</h2></SectionContent>
         <SectionContent><p className="section-intro">A friendly reason to put the phone down.<br />Compare daily activity and cheer each other on.</p></SectionContent>
-        <SectionContent motion="friends"><div className="battle-ring"><BoxingPlayer initialCount={36} /><span className="battle-vs">VS</span><BoxingPlayer opponent initialCount={93} /></div></SectionContent>
+        <SectionContent><div className="friends-board" role="img" aria-label="Example Friends Leaderboard: you with 36 videos today, ranked first, and a friend with 93, ranked second.">
+          <div className="friends-row"><b>1</b><Mascot mood="fresh" alt="" /><span>You</span><strong>36</strong></div>
+          <div className="friends-row"><b>2</b><Mascot mood="drained" alt="" /><span>Friend</span><strong>93</strong></div>
+        </div><p className="battle-note">Example daily Reels and Shorts counts.</p></SectionContent>
         <SectionContent><span className="battle-caption">Less scrolling. More high fives.</span></SectionContent>
       </div>
     </section>
