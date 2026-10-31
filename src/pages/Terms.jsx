@@ -48,7 +48,7 @@ export default function Terms() {
             <h2>{"Content & third-party services"}</h2>
             <p>
               {
-                "The ScrollSnooze name, interface and original artwork belong to their respective rights holders. Third-party app names are used to describe compatibility; ScrollSnooze is not affiliated with or endorsed by Instagram, YouTube or other tracked apps. Google authentication, Android permissions and app distribution are subject to those providers’ applicable terms."
+                "The ScrollSnooze name, interface and original artwork belong to their respective rights holders. Third-party app names are used to describe compatibility; ScrollSnooze is not affiliated with or endorsed by Instagram or YouTube. Google authentication, Android permissions and app distribution are subject to those providers’ applicable terms."
               }
             </p>
           </section>

@@ -141,7 +141,7 @@ export default function Privacy() {
             <h2>{"Google sign-in & account backup"}</h2>
             <p>
               {
-                "Google handles sign-in and supplies an identity token. ScrollSnooze uses an opaque Google identifier to identify your account, plus a display name or a fallback derived from your email for presentation. We do not receive your Google password or gain access to Gmail or Google Drive through this sign-in."
+                "Google handles sign-in and supplies an identity token. ScrollSnooze uses an opaque Google identifier to identify your account, plus your Google display name for presentation. The identity token may include your email address, but we do not store it. We do not receive your Google password or gain access to Gmail or Google Drive through this sign-in."
               }
             </p>
             <p>
@@ -182,7 +182,7 @@ export default function Privacy() {
             </p>
             <p>
               {
-                "Requests to this website expose ordinary connection information, such as IP address, browser request headers and requested pages, to the hosting provider. The site does not set advertising cookies, embed behavioral analytics, or submit its deletion form to a database. The form prepares an email in your chosen email app; it is sent only when you send it."
+                "Requests to this website expose ordinary connection information, such as IP address, browser request headers and requested pages, to the hosting provider. The site does not set advertising cookies, embed behavioral analytics, or submit its email deletion form to a database. That form prepares an email in your chosen email app; it is sent only when you send it. If you choose to delete your account with Google on the deletion page, the page loads Google’s sign-in service, and your browser sends the resulting identity token directly to our account service to confirm your account and carry out the deletion. The token is kept only in the page’s memory."
               }
             </p>
             <p>
@@ -213,7 +213,7 @@ export default function Privacy() {
             <h2>{"Your choices & deletion"}</h2>
             <p>
               {
-                "You can turn Accessibility and Usage Access off in Android settings. In the app, signed-in users can go to Profile > Account settings > Your data & account to export data, reset this phone or delete their account and data. Guests can go to Profile > Your data & privacy to reset this phone. Cloud account deletion and clearing a phone’s local data are separate actions. You can also delete your account on our deletion page by signing in with Google. That page loads Google’s sign-in service only after you choose to sign in."
+                "You can turn Accessibility and Usage Access off in Android settings. In the app, signed-in users can go to Profile > Account settings > Your data & account to export data, delete data on this phone or delete their account and data. Guests can go to Profile > Your data & privacy to delete data on this phone, which keeps any account. Deleting your account in the app also clears its data from that phone. You can also delete your account on our deletion page by signing in with Google; this does not clear data already on a phone."
               }
             </p>
             <p>
