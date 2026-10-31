@@ -906,3 +906,7 @@ button {
     animation: none !important;
   }
 }
+
+.google-delete{display:grid;gap:12px;margin-top:12px}
+.google-delete-agree{display:flex;align-items:center;gap:10px;min-height:44px}
+.google-delete .button:disabled{opacity:.55;cursor:not-allowed}

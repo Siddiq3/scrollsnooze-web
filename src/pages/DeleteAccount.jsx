@@ -1,4 +1,5 @@
 import DeletionForm from "../components/DeletionForm";
+import GoogleDeletion from "../components/GoogleDeletion";
 export default function DeleteAccount() {
   return (
     <main id="main" className="wrap document-page">
@@ -16,8 +17,14 @@ export default function DeleteAccount() {
       </header>
       <div className="pagecontent">
         <div className="request">
-          <span className="badge">{"Request by email · no app installation needed"}</span>
-          <h2 style={{ marginTop: "18px" }}>{"Request account deletion"}</h2>
+          <span className="badge">{"No app installation needed"}</span>
+          <h2 style={{ marginTop: "18px" }}>{"Delete your account with Google"}</h2>
+          <p>{"Sign in with the Google account you use for ScrollSnooze, check it’s the right account, and confirm."}</p>
+          <GoogleDeletion />
+        </div>
+        <div className="request">
+          <span className="badge">{"Can’t sign in?"}</span>
+          <h2 style={{ marginTop: "18px" }}>{"Request deletion by email"}</h2>
           <p>
             {"Email "}
             <a
@@ -34,7 +41,7 @@ export default function DeleteAccount() {
           </p>
           <DeletionForm />
         </div>
-        <h2>{"What happens next"}</h2>
+        <h2>{"If you request by email"}</h2>
         <div className="steps">
           <article className="step">
             <b>{"1"}</b>
@@ -83,11 +90,11 @@ export default function DeleteAccount() {
             <h2>{"What happens on your phone"}</h2>
             <p>
               {
-                "A request by email does not erase files already stored on your device. Use "
+                "Deleting from this page or by email does not erase files already stored on your device. In the app, use "
               }
-              <strong>{"Profile → Your data & privacy → Delete data on this phone"}</strong>
+              <strong>{"Delete data on this phone"}</strong>
               {
-                " in the app, or uninstall it to remove the app’s private device storage. Uninstalling alone does not request cloud account deletion."
+                " in Profile → Your data & privacy (guests) or Profile → Account settings → Your data & account (signed in), or uninstall the app to remove the app’s private device storage. Uninstalling alone does not request cloud account deletion."
               }
             </p>
             <h2>{"Prefer doing it in the app?"}</h2>

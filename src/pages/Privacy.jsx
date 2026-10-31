@@ -213,7 +213,7 @@ export default function Privacy() {
             <h2>{"Your choices & deletion"}</h2>
             <p>
               {
-                "You can turn Accessibility and Usage Access off in Android settings. In the app, signed-in users can go to Profile > Account settings > Your data & account to export data, reset this phone or delete their account and data. Guests can go to Profile > Your data & privacy to reset this phone. Cloud account deletion and clearing a phone’s local data are separate actions."
+                "You can turn Accessibility and Usage Access off in Android settings. In the app, signed-in users can go to Profile > Account settings > Your data & account to export data, reset this phone or delete their account and data. Guests can go to Profile > Your data & privacy to reset this phone. Cloud account deletion and clearing a phone’s local data are separate actions. You can also delete your account on our deletion page by signing in with Google. That page loads Google’s sign-in service only after you choose to sign in."
               }
             </p>
             <p>
