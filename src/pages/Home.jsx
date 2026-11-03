@@ -36,8 +36,10 @@ function useOnScreen() {
   return [ref, onScreen];
 }
 
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.siddiqkolimi.scrollsnooze";
+
 function StoreLink() {
-  return <a className="ui-btn store-button" href="/support/"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2v20l16-10z" /></svg>Coming soon to Google Play</a>;
+  return <a className="ui-btn store-button" href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2v20l16-10z" /></svg>Get it on Google Play</a>;
 }
 
 export default function Home() {
@@ -69,7 +71,7 @@ export default function Home() {
         <div>
           <SectionContent><h1>See your <em>reel count.</em></h1></SectionContent>
           <SectionContent delay={80}><p className="lede">Understand your Reels, Shorts and daily app time. ScrollSnooze helps you notice your habits and find a moment to pause.</p></SectionContent>
-          <SectionContent delay={160}><div className="store-row"><StoreLink /><p className="launch-proof">Android launch in preparation <span>·</span> Your little fresh start</p></div></SectionContent>
+          <SectionContent delay={160}><div className="store-row"><StoreLink /><p className="launch-proof">Now available on Android <span>·</span> Your little fresh start</p></div></SectionContent>
         </div>
         <SectionContent motion="phone" delay={100}>
           <div className="reference-phone-stage" ref={heroRef}>
@@ -139,7 +141,7 @@ export default function Home() {
           <summary>{"Is ScrollSnooze available on iPhone?"}</summary>
           <p>
             {
-              "The initial launch is for Android. An iPhone version is in development; individual Reels and Shorts counting is not available through Apple’s Screen Time APIs."
+              "ScrollSnooze is available now on Android. An iPhone version is in development; individual Reels and Shorts counting is not available through Apple’s Screen Time APIs."
             }
           </p>
         </details>

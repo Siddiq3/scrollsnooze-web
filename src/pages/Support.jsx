@@ -82,9 +82,11 @@ export default function Support() {
           <details>
             <summary>{"Where can I download ScrollSnooze?"}</summary>
             <p>
-              {
-                "ScrollSnooze is preparing for its first Android release. A public download link will be added when the Play Store listing is available."
-              }
+              {"ScrollSnooze is available for Android on "}
+              <a className="textlink" href="https://play.google.com/store/apps/details?id=com.siddiqkolimi.scrollsnooze" target="_blank" rel="noopener noreferrer">
+                Google Play
+              </a>
+              {"."}
             </p>
           </details>
         </div>

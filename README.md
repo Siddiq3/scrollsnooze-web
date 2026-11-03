@@ -49,7 +49,7 @@ inline and optimized to about 2 MB, with a poster and manual-play fallback. Samp
 are illustrative; friends are labelled in development. Character moods do not measure
 brain health. The loop preserves its position while paused and stops when the page
 is hidden or Reduce Motion is enabled. The page's Pause animations control stops
-both the timeline and reel playback. Download buttons remain coming soon.
+both the timeline and reel playback. Download buttons link to the Google Play listing.
 
 Deploy this React project using [VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md). The old Sites
 hosting project is not used by Vercel. No final domain is hardcoded. Set `SITE_URL` in
