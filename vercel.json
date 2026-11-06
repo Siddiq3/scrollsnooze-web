@@ -52,7 +52,7 @@
   "rewrites": [
     {
       "source": "/join/:code",
-      "destination": "https://pwi8tdewmb.execute-api.us-east-1.amazonaws.com/join/:code"
+      "destination": "https://wbyz67ld9d.execute-api.ap-south-2.amazonaws.com/join/:code"
     }
   ]
 }

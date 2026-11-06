@@ -19,5 +19,5 @@ test('signing association is scoped to ScrollSnooze and join paths', () => {
 test('Vercel preserves opaque invite path and query with no trailing-slash redirect', () => {
  const config=JSON.parse(readFileSync(new URL('../vercel.json',import.meta.url),'utf8'));
  assert.equal(config.trailingSlash,false);
- assert.deepEqual(config.rewrites,[{source:'/join/:code',destination:'https://pwi8tdewmb.execute-api.us-east-1.amazonaws.com/join/:code'}]);
+ assert.deepEqual(config.rewrites,[{source:'/join/:code',destination:'https://wbyz67ld9d.execute-api.ap-south-2.amazonaws.com/join/:code'}]);
 });

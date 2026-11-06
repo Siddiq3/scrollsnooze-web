@@ -1,6 +1,6 @@
 // The client ID and API address are public values, already shipped in the app.
 export const GOOGLE_CLIENT_ID = "642376879468-jr70kvap8q8ml33hac4to9aqctla1kce.apps.googleusercontent.com";
-export const API_URL = "https://pwi8tdewmb.execute-api.us-east-1.amazonaws.com";
+export const API_URL = "https://wbyz67ld9d.execute-api.ap-south-2.amazonaws.com";
 
 const fail = (kind) => Object.assign(new Error(kind), { kind });
 
